@@ -18,6 +18,9 @@ using WinFormsWebBrowser.WebPagesParserBasedOnDOM;
 
 namespace WinFormsWebBrowser
 {
+    /*
+     *  Kupujem prodajem main form class
+     */
     public partial class KupujemProdajemMainForm : Form
     {
         #region [ Private Properties ]
