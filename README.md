@@ -6,7 +6,7 @@ Kupujem Prodajem Web Scraping Utility
 - Za preuzimanje sadržaja sa drugih web site-ova koristi se web scraping tehnika.
 - Razvojno okruženje: Visual Studio Community Edition, C# .NET, default browser engine je Internet Explorer
 - Inicijalni source kod je proof of concept koji će se razvijati u gotov alat.
-- Autor ovog alata se ograđuje od neovlašćenog korišćenja preuzetog originala materijala (tekst, slike) sa drugih web site-ova, više o istom u napomeni
+- Autor ovog alata se ograđuje od neovlašćenog korišćenja preuzetog originalnog materijala (tekst, slike) sa drugih web site-ova, više o istom u napomeni.
 
 ## Korisnički interfejs
 
