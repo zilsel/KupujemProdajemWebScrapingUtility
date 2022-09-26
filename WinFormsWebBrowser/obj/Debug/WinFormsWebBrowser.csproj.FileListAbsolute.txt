@@ -1,0 +1,12 @@
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\bin\Debug\WinFormsWebBrowser.exe.config
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\bin\Debug\WinFormsWebBrowser.exe
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\bin\Debug\WinFormsWebBrowser.pdb
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.csproj.AssemblyReference.cache
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.csproj.SuggestedBindingRedirects.cache
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.aboutApplication.resources
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.KupujemProdajemMainForm.resources
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.Properties.Resources.resources
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.csproj.GenerateResource.cache
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.csproj.CoreCompileInputs.cache
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.exe
+D:\Work\Repositories\Git\KupujemProdajemWebScrapingUtility\WinFormsWebBrowser\obj\Debug\WinFormsWebBrowser.pdb

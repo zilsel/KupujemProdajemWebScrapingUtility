@@ -62,7 +62,7 @@ namespace WinFormsWebBrowser
 
         private void DigitalVisionGetMobilePhoneMasks()
         {
-            DigitalVisionDOMParser.DigitalVisionExtractMobileDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
+            DigitalVisionDOMParser.DigitalVisionExtractMobilePhoneMasksDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
 
             this.bntDigitalVisionMobilePhones.Enabled = true;
         }
@@ -131,8 +131,8 @@ namespace WinFormsWebBrowser
         private void btnPhoneMask_Click(object sender, EventArgs e)
         {
             this.baseUri = new Uri("https://digitalvision.rs");
-            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionMobilePhones;
-            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/razno-2841"));
+            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasks;
+            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/armband"));
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnPhoneMask.Enabled = false;
         }

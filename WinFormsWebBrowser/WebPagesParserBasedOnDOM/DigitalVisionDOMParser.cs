@@ -12,8 +12,38 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 {
     internal static class DigitalVisionDOMParser
     {
-        public static void DigitalVisionExtractMobileDataFromPage(WebBrowser webBrowser, ProgressBar progressBar, 
+        public static void DigitalVisionExtractMobileDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
+        {
+            ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+        }
+
+        public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
+                                                                    TextBox tbSavePath, Uri baseUri)
+        {
+            ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+        }
+
+        private static string RemoveSpecialCharacters(string str)
+        {
+            char[] buffer = new char[str.Length];
+            int idx = 0;
+
+            foreach (char c in str)
+            {
+                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z')
+                    || (c >= 'a' && c <= 'z')
+                    || (c == '.') || (c == '_') || (c == ' '))
+                {
+                    buffer[idx] = c;
+                    idx++;
+                }
+            }
+
+            return new string(buffer, 0, idx);
+        }
+
+        private static void ExtractDataFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri)
         {
             using (var fbd = new FolderBrowserDialog())
             {
@@ -40,31 +70,32 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         // Get first child element since it contains image and article title
                         HtmlElement htmlElement = childrenHtmlDocument[i];
                         HtmlElementCollection article = htmlElement.Children;
-                        string innerHtml = article[0].Children[0].InnerHtml;
+                        string innerImgHtml = article[0].Children[0].InnerHtml;
+                        string innerAHrefHtml = article[0].Children[1].InnerHtml;
 
                         string articleTitle = "";
                         string articleLink = "";
                         string articleImage = "";
 
                         // Create a pattern for article elements:
-                        string patternTitle = @"img\s+(?:[^>]*?\s+)?alt=([""'])(.*?)\1";
-                        string patternLink = @"<a\s+(?:[^>]*?\s+)?href=([""'])(.*?)\1";
+                        string patternTitle = @".*<a class=\""(.*)\"" href=\""(.*)\"">(.*)</a>";
+                        string patternLink = @"href\s*=\s*(?:[""'](?<1>[^""']*)[""']|(?<1>[^>\s]+))";
                         string patternImage = @"img\s+(?:[^>]*?\s+)?src=([""'])(.*?)\1";
 
                         // Create a regular expression:
                         // Title:
-                        Regex rg = new Regex(patternTitle, RegexOptions.IgnoreCase);
-                        MatchCollection matched = rg.Matches(innerHtml);
-                        articleTitle = matched[0].Groups[2].Value;
+                        Regex rg = new Regex(patternTitle, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                        MatchCollection matched = rg.Matches(innerAHrefHtml);
+                        articleTitle = matched[0].Groups[3].Value;
 
                         // Link:
-                        rg = new Regex(patternLink, RegexOptions.IgnoreCase);
-                        matched = rg.Matches(innerHtml);
-                        articleLink = matched[0].Groups[2].Value;
+                        rg = new Regex(patternLink, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                        matched = rg.Matches(innerAHrefHtml);
+                        articleLink = matched[0].Groups[0].Value;
 
                         // Image:
-                        rg = new Regex(patternImage, RegexOptions.IgnoreCase);
-                        matched = rg.Matches(innerHtml);
+                        rg = new Regex(patternImage, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                        matched = rg.Matches(innerImgHtml);
                         articleImage = matched[0].Groups[2].Value;
 
                         string[] imageSegments = articleImage.Split('&');
@@ -73,6 +104,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         // SAVE ARTICLE TO FILE SYSTEM
                         // DOWNLOAD ARTICLE IMAGE
 
+                        articleTitle = RemoveSpecialCharacters(articleTitle);
                         string articleDirectory = System.IO.Path.Combine(fbd.SelectedPath, articleTitle);
                         string articleFile = System.IO.Path.Combine(articleDirectory, articleTitle + ".txt");
                         Directory.CreateDirectory(articleDirectory);
@@ -91,23 +123,6 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 
                         progressBar.PerformStep();
                     }
-                }
-            }
-        }
-
-        public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
-                                                                    TextBox tbSavePath, Uri baseUri)
-        {
-            using (var fbd = new FolderBrowserDialog())
-            {
-                DialogResult result = fbd.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                {
-                    tbSavePath.Text = fbd.SelectedPath;
-                    tbSavePath.Refresh();
-
-                    HtmlDocument htmlDocument = webBrowser.Document;
                 }
             }
         }
