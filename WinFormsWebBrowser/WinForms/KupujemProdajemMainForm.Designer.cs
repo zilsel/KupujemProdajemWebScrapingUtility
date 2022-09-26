@@ -58,6 +58,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.oPROGRAMUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPhoneMask = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -306,6 +307,7 @@
             // 
             // groupBoxOglasi
             // 
+            this.groupBoxOglasi.Controls.Add(this.btnPhoneMask);
             this.groupBoxOglasi.Controls.Add(this.bntDigitalVisionMobilePhones);
             this.groupBoxOglasi.Controls.Add(this.progressBar);
             this.groupBoxOglasi.Controls.Add(this.tbSavePath);
@@ -325,7 +327,7 @@
             this.bntDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.bntDigitalVisionMobilePhones.Location = new System.Drawing.Point(9, 19);
             this.bntDigitalVisionMobilePhones.Name = "bntDigitalVisionMobilePhones";
-            this.bntDigitalVisionMobilePhones.Size = new System.Drawing.Size(191, 91);
+            this.bntDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
             this.bntDigitalVisionMobilePhones.TabIndex = 0;
             this.bntDigitalVisionMobilePhones.Text = "PREUZMI MOBILNE TELEFONE";
             this.bntDigitalVisionMobilePhones.UseVisualStyleBackColor = false;
@@ -381,6 +383,18 @@
             this.oPROGRAMUToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.oPROGRAMUToolStripMenuItem.Text = "O PROGRAMU";
             this.oPROGRAMUToolStripMenuItem.Click += new System.EventHandler(this.oPROGRAMUToolStripMenuItem_Click);
+            // 
+            // btnPhoneMask
+            // 
+            this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPhoneMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPhoneMask.Location = new System.Drawing.Point(107, 19);
+            this.btnPhoneMask.Name = "btnPhoneMask";
+            this.btnPhoneMask.Size = new System.Drawing.Size(92, 64);
+            this.btnPhoneMask.TabIndex = 4;
+            this.btnPhoneMask.Text = "PREUZMI MOBILNE MASKE";
+            this.btnPhoneMask.UseVisualStyleBackColor = false;
+            this.btnPhoneMask.Click += new System.EventHandler(this.btnPhoneMask_Click);
             // 
             // KupujemProdajemMainForm
             // 
@@ -443,6 +457,7 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.PictureBox pbArticleImage;
+        private System.Windows.Forms.Button btnPhoneMask;
     }
 }
 

@@ -94,5 +94,22 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                 }
             }
         }
+
+        public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
+                                                                    TextBox tbSavePath, Uri baseUri)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    tbSavePath.Text = fbd.SelectedPath;
+                    tbSavePath.Refresh();
+
+                    HtmlDocument htmlDocument = webBrowser.Document;
+                }
+            }
+        }
     }
 }

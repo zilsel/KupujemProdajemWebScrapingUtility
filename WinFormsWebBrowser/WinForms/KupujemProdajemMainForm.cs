@@ -19,14 +19,14 @@ using WinFormsWebBrowser.WebPagesParserBasedOnDOM;
 namespace WinFormsWebBrowser
 {
     /*
-     *  Kupujem prodajem main form class
+     *  Kupujem Prodajem main form class
      */
     public partial class KupujemProdajemMainForm : Form
     {
         #region [ Private Properties ]
 
         private Uri baseUri = null;
-        private enum TypeOfWebPage { None = 0, DigitalVisionMobilePhones, KupujemProdajemLogin, KupujemProdajemOglasi };
+        private enum TypeOfWebPage { None = 0, DigitalVisionMobilePhones, DigitalVisionPhoneMasks, KupujemProdajemLogin, KupujemProdajemOglasi };
 
         private TypeOfWebPage currentTypeOfWebPage = TypeOfWebPage.None;
 
@@ -54,6 +54,13 @@ namespace WinFormsWebBrowser
         #region [ Digital Vision ]
 
         private void DigitalVisionGetMobilePhones()
+        {
+            DigitalVisionDOMParser.DigitalVisionExtractMobileDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
+
+            this.bntDigitalVisionMobilePhones.Enabled = true;
+        }
+
+        private void DigitalVisionGetMobilePhoneMasks()
         {
             DigitalVisionDOMParser.DigitalVisionExtractMobileDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
 
@@ -91,6 +98,10 @@ namespace WinFormsWebBrowser
 
                     DigitalVisionGetMobilePhones();
                     break;
+                case TypeOfWebPage.DigitalVisionPhoneMasks:
+
+                    DigitalVisionGetMobilePhoneMasks();
+                    break;
                 case TypeOfWebPage.KupujemProdajemLogin:
 
                     KupujemProdajemLogin();
@@ -115,6 +126,15 @@ namespace WinFormsWebBrowser
             this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/razno-2841"));
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.bntDigitalVisionMobilePhones.Enabled = false;
+        }
+
+        private void btnPhoneMask_Click(object sender, EventArgs e)
+        {
+            this.baseUri = new Uri("https://digitalvision.rs");
+            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionMobilePhones;
+            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/razno-2841"));
+            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
+            this.btnPhoneMask.Enabled = false;
         }
 
         private void btnKupujemProdajemLogin_Click(object sender, EventArgs e)
@@ -228,5 +248,7 @@ namespace WinFormsWebBrowser
         }
 
         #endregion
+
+        
     }
 }
