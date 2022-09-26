@@ -24,6 +24,12 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
             ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
         }
 
+        public static void DigitalVisionExtractMobilePhoneMasksCategoryFromPage(WebBrowser webBrowser, ProgressBar progressBar,
+                                                                    TextBox tbSavePath, Uri baseUri, ComboBox cbPhoneMasksCategory)
+        {
+            ExtractCategoryFromHtml(webBrowser, progressBar, tbSavePath, baseUri, cbPhoneMasksCategory);
+        }
+
         private static string RemoveSpecialCharacters(string str)
         {
             char[] buffer = new char[str.Length];
@@ -41,6 +47,34 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
             }
 
             return new string(buffer, 0, idx);
+        }
+
+
+        // TODO: treba mi jos jedna ovakva methoda koja radi isto sa time sto ona skuplja kategorije.
+        // isto se koristi sa time sto indexi treba da budu drugaciji
+
+        private static void ExtractCategoryFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri, ComboBox phoneMasksCategory)
+        {
+            HtmlDocument htmlDocument = webBrowser.Document;
+
+            HtmlElementCollection htmlElementCollection = htmlDocument.GetElementsByTagName("ul");
+            HtmlElementCollection childrenHtmlDocument = htmlElementCollection[4].Children;
+
+            progressBar.Minimum = 1;
+            progressBar.Maximum = childrenHtmlDocument.Count;
+            progressBar.Value = 1;
+            progressBar.Step = 1;
+
+            for (int i = 0; i < childrenHtmlDocument.Count; i++)
+            {
+
+                // Get first child element since it contains image and article title
+                HtmlElement htmlElement = childrenHtmlDocument[i];
+                HtmlElementCollection article = htmlElement.Children;
+                string category = article[1].Children[0].InnerHtml;
+
+                phoneMasksCategory.Items.Add(category);
+            }
         }
 
         private static void ExtractDataFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri)

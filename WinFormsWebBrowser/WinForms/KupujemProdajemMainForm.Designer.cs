@@ -51,14 +51,17 @@
             this.pbArticleImage = new System.Windows.Forms.PictureBox();
             this.btnKupujemProdajemLogin = new System.Windows.Forms.Button();
             this.groupBoxOglasi = new System.Windows.Forms.GroupBox();
-            this.bntDigitalVisionMobilePhones = new System.Windows.Forms.Button();
+            this.btnPhoneMask = new System.Windows.Forms.Button();
+            this.btnDigitalVisionMobilePhones = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.tbSavePath = new System.Windows.Forms.TextBox();
             this.lblSavePath = new System.Windows.Forms.Label();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.oPROGRAMUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnPhoneMask = new System.Windows.Forms.Button();
+            this.btnMobileMaskCategory = new System.Windows.Forms.Button();
+            this.cbMobilePhoneMasks = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -307,8 +310,11 @@
             // 
             // groupBoxOglasi
             // 
+            this.groupBoxOglasi.Controls.Add(this.label5);
+            this.groupBoxOglasi.Controls.Add(this.cbMobilePhoneMasks);
+            this.groupBoxOglasi.Controls.Add(this.btnMobileMaskCategory);
             this.groupBoxOglasi.Controls.Add(this.btnPhoneMask);
-            this.groupBoxOglasi.Controls.Add(this.bntDigitalVisionMobilePhones);
+            this.groupBoxOglasi.Controls.Add(this.btnDigitalVisionMobilePhones);
             this.groupBoxOglasi.Controls.Add(this.progressBar);
             this.groupBoxOglasi.Controls.Add(this.tbSavePath);
             this.groupBoxOglasi.Controls.Add(this.lblSavePath);
@@ -321,17 +327,29 @@
             this.groupBoxOglasi.TabStop = false;
             this.groupBoxOglasi.Text = "OGLASI";
             // 
+            // btnPhoneMask
+            // 
+            this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPhoneMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPhoneMask.Location = new System.Drawing.Point(205, 19);
+            this.btnPhoneMask.Name = "btnPhoneMask";
+            this.btnPhoneMask.Size = new System.Drawing.Size(92, 64);
+            this.btnPhoneMask.TabIndex = 4;
+            this.btnPhoneMask.Text = "PREUZMI MOBILNE MASKE";
+            this.btnPhoneMask.UseVisualStyleBackColor = false;
+            this.btnPhoneMask.Click += new System.EventHandler(this.btnPhoneMask_Click);
+            // 
             // bntDigitalVisionMobilePhones
             // 
-            this.bntDigitalVisionMobilePhones.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.bntDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.bntDigitalVisionMobilePhones.Location = new System.Drawing.Point(9, 19);
-            this.bntDigitalVisionMobilePhones.Name = "bntDigitalVisionMobilePhones";
-            this.bntDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
-            this.bntDigitalVisionMobilePhones.TabIndex = 0;
-            this.bntDigitalVisionMobilePhones.Text = "PREUZMI MOBILNE TELEFONE";
-            this.bntDigitalVisionMobilePhones.UseVisualStyleBackColor = false;
-            this.bntDigitalVisionMobilePhones.Click += new System.EventHandler(this.bntExtractDataDigitalVisionMobilePhones_Click);
+            this.btnDigitalVisionMobilePhones.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(9, 19);
+            this.btnDigitalVisionMobilePhones.Name = "bntDigitalVisionMobilePhones";
+            this.btnDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
+            this.btnDigitalVisionMobilePhones.TabIndex = 0;
+            this.btnDigitalVisionMobilePhones.Text = "PREUZMI MOBILNE TELEFONE";
+            this.btnDigitalVisionMobilePhones.UseVisualStyleBackColor = false;
+            this.btnDigitalVisionMobilePhones.Click += new System.EventHandler(this.btnExtractDataDigitalVisionMobilePhones_Click);
             // 
             // progressBar
             // 
@@ -384,17 +402,34 @@
             this.oPROGRAMUToolStripMenuItem.Text = "O PROGRAMU";
             this.oPROGRAMUToolStripMenuItem.Click += new System.EventHandler(this.oPROGRAMUToolStripMenuItem_Click);
             // 
-            // btnPhoneMask
+            // btnMobileMaskCategory
             // 
-            this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnPhoneMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPhoneMask.Location = new System.Drawing.Point(107, 19);
-            this.btnPhoneMask.Name = "btnPhoneMask";
-            this.btnPhoneMask.Size = new System.Drawing.Size(92, 64);
-            this.btnPhoneMask.TabIndex = 4;
-            this.btnPhoneMask.Text = "PREUZMI MOBILNE MASKE";
-            this.btnPhoneMask.UseVisualStyleBackColor = false;
-            this.btnPhoneMask.Click += new System.EventHandler(this.btnPhoneMask_Click);
+            this.btnMobileMaskCategory.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnMobileMaskCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMobileMaskCategory.Location = new System.Drawing.Point(107, 19);
+            this.btnMobileMaskCategory.Name = "btnMobileMaskCategory";
+            this.btnMobileMaskCategory.Size = new System.Drawing.Size(92, 64);
+            this.btnMobileMaskCategory.TabIndex = 5;
+            this.btnMobileMaskCategory.Text = "PREUZMI KATEGORIJE MOBILNIH MASKI";
+            this.btnMobileMaskCategory.UseVisualStyleBackColor = false;
+            this.btnMobileMaskCategory.Click += new System.EventHandler(this.btnMobileMaskCategory_Click);
+            // 
+            // cbMobilePhoneMasks
+            // 
+            this.cbMobilePhoneMasks.FormattingEnabled = true;
+            this.cbMobilePhoneMasks.Location = new System.Drawing.Point(150, 97);
+            this.cbMobilePhoneMasks.Name = "cbMobilePhoneMasks";
+            this.cbMobilePhoneMasks.Size = new System.Drawing.Size(121, 21);
+            this.cbMobilePhoneMasks.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(126, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "KATEGORIJA MASKI";
             // 
             // KupujemProdajemMainForm
             // 
@@ -430,7 +465,7 @@
 
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.SplitContainer splitContainer;
-        private System.Windows.Forms.Button bntDigitalVisionMobilePhones;
+        private System.Windows.Forms.Button btnDigitalVisionMobilePhones;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lblSavePath;
         private System.Windows.Forms.TextBox tbSavePath;
@@ -458,6 +493,9 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.PictureBox pbArticleImage;
         private System.Windows.Forms.Button btnPhoneMask;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbMobilePhoneMasks;
+        private System.Windows.Forms.Button btnMobileMaskCategory;
     }
 }
 

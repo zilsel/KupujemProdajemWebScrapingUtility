@@ -26,7 +26,7 @@ namespace WinFormsWebBrowser
         #region [ Private Properties ]
 
         private Uri baseUri = null;
-        private enum TypeOfWebPage { None = 0, DigitalVisionMobilePhones, DigitalVisionPhoneMasks, KupujemProdajemLogin, KupujemProdajemOglasi };
+        private enum TypeOfWebPage { None = 0, DigitalVisionMobilePhones, DigitalVisionPhoneMasks, DigitalVisionPhoneMasksCategory, KupujemProdajemLogin, KupujemProdajemOglasi };
 
         private TypeOfWebPage currentTypeOfWebPage = TypeOfWebPage.None;
 
@@ -57,14 +57,21 @@ namespace WinFormsWebBrowser
         {
             DigitalVisionDOMParser.DigitalVisionExtractMobileDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
 
-            this.bntDigitalVisionMobilePhones.Enabled = true;
+            this.btnDigitalVisionMobilePhones.Enabled = true;
         }
 
         private void DigitalVisionGetMobilePhoneMasks()
         {
             DigitalVisionDOMParser.DigitalVisionExtractMobilePhoneMasksDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
 
-            this.bntDigitalVisionMobilePhones.Enabled = true;
+            this.btnPhoneMask.Enabled = true;
+        }
+
+        private void DigitalVisionMobileMaskCategory()
+        {
+            DigitalVisionDOMParser.DigitalVisionExtractMobilePhoneMasksCategoryFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri, this.cbMobilePhoneMasks);
+
+            this.btnMobileMaskCategory.Enabled = true;
         }
 
         #endregion
@@ -102,6 +109,10 @@ namespace WinFormsWebBrowser
 
                     DigitalVisionGetMobilePhoneMasks();
                     break;
+                case TypeOfWebPage.DigitalVisionPhoneMasksCategory:
+
+                    DigitalVisionMobileMaskCategory();
+                    break;
                 case TypeOfWebPage.KupujemProdajemLogin:
 
                     KupujemProdajemLogin();
@@ -116,25 +127,34 @@ namespace WinFormsWebBrowser
                     break;
             }
 
-            this.bntDigitalVisionMobilePhones.Enabled = true;
+            this.btnDigitalVisionMobilePhones.Enabled = true;
         }
 
-        private void bntExtractDataDigitalVisionMobilePhones_Click(object sender, EventArgs e)
+        private void btnExtractDataDigitalVisionMobilePhones_Click(object sender, EventArgs e)
         {
             this.baseUri = new Uri("https://digitalvision.rs");
             this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionMobilePhones;
             this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/razno-2841"));
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            this.bntDigitalVisionMobilePhones.Enabled = false;
+            this.btnDigitalVisionMobilePhones.Enabled = false;
         }
 
         private void btnPhoneMask_Click(object sender, EventArgs e)
         {
             this.baseUri = new Uri("https://digitalvision.rs");
-            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasks;
-            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/armband"));
+            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasksCategory;
+            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + this.cbMobilePhoneMasks.SelectedText));
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnPhoneMask.Enabled = false;
+        }
+
+        private void btnMobileMaskCategory_Click(object sender, EventArgs e)
+        {
+            this.baseUri = new Uri("https://digitalvision.rs");
+            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasksCategory;
+            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/torbice-za-telefone"));
+            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
+            this.btnMobileMaskCategory.Enabled = false;
         }
 
         private void btnKupujemProdajemLogin_Click(object sender, EventArgs e)
@@ -247,8 +267,7 @@ namespace WinFormsWebBrowser
             this.webLink = String.Empty;
         }
 
-        #endregion
 
-        
+        #endregion
     }
 }
