@@ -12,6 +12,34 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 {
     internal static class DigitalVisionDOMParser
     {
+
+        /// <summary>
+        /// This is the item of the phone mask category combo box
+        /// </summary>
+        public class PhoneMaskCategoryItem
+        {
+            public string categoryName;
+            public string categoryHtmlLink;
+
+            public PhoneMaskCategoryItem(string name, string id)
+            {
+                categoryName = name;
+                categoryHtmlLink = id;
+            }
+
+            public string Name
+            {
+                get { return categoryName; }
+                set { categoryName = value; }
+            }
+
+            public string Link
+            {
+                get { return categoryHtmlLink; }
+                set { categoryHtmlLink = value; }
+            }
+        }
+
         public static void DigitalVisionExtractMobileDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
         {
@@ -50,9 +78,6 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
         }
 
 
-        // TODO: treba mi jos jedna ovakva methoda koja radi isto sa time sto ona skuplja kategorije.
-        // isto se koristi sa time sto indexi treba da budu drugaciji
-
         private static void ExtractCategoryFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri, ComboBox phoneMasksCategory)
         {
             HtmlDocument htmlDocument = webBrowser.Document;
@@ -71,9 +96,22 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                 // Get first child element since it contains image and article title
                 HtmlElement htmlElement = childrenHtmlDocument[i];
                 HtmlElementCollection article = htmlElement.Children;
+                string categoryLink = article[0].InnerHtml;
                 string category = article[1].Children[0].InnerHtml;
+                string link = string.Empty;
 
-                phoneMasksCategory.Items.Add(category);
+
+                string patternLink = @"a\s+(?:[^>]*?\s+)?href=([""'])(.*?)\1";
+
+                // Create a regular expression:
+                // Title:
+                Regex rg = new Regex(patternLink, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                MatchCollection matched = rg.Matches(categoryLink);
+                link = matched[0].Groups[2].Value;
+
+                baseUri = new Uri(baseUri, link);
+
+                phoneMasksCategory.Items.Add(new PhoneMaskCategoryItem(category, baseUri.OriginalString));
             }
         }
 

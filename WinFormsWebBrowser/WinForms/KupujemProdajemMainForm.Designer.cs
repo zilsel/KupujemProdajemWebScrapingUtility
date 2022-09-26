@@ -51,6 +51,9 @@
             this.pbArticleImage = new System.Windows.Forms.PictureBox();
             this.btnKupujemProdajemLogin = new System.Windows.Forms.Button();
             this.groupBoxOglasi = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbMobilePhoneMasks = new System.Windows.Forms.ComboBox();
+            this.btnMobileMaskCategory = new System.Windows.Forms.Button();
             this.btnPhoneMask = new System.Windows.Forms.Button();
             this.btnDigitalVisionMobilePhones = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
@@ -59,9 +62,6 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.oPROGRAMUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnMobileMaskCategory = new System.Windows.Forms.Button();
-            this.cbMobilePhoneMasks = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -327,6 +327,38 @@
             this.groupBoxOglasi.TabStop = false;
             this.groupBoxOglasi.Text = "OGLASI";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(126, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "KATEGORIJA MASKI";
+            // 
+            // cbMobilePhoneMasks
+            // 
+            this.cbMobilePhoneMasks.DisplayMember = "Name";
+            this.cbMobilePhoneMasks.FormattingEnabled = true;
+            this.cbMobilePhoneMasks.Location = new System.Drawing.Point(150, 97);
+            this.cbMobilePhoneMasks.Name = "cbMobilePhoneMasks";
+            this.cbMobilePhoneMasks.Size = new System.Drawing.Size(121, 21);
+            this.cbMobilePhoneMasks.TabIndex = 6;
+            this.cbMobilePhoneMasks.ValueMember = "Link";
+            this.cbMobilePhoneMasks.SelectedIndexChanged += new System.EventHandler(this.cbMobilePhoneMasks_SelectedIndexChanged);
+            // 
+            // btnMobileMaskCategory
+            // 
+            this.btnMobileMaskCategory.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnMobileMaskCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMobileMaskCategory.Location = new System.Drawing.Point(107, 19);
+            this.btnMobileMaskCategory.Name = "btnMobileMaskCategory";
+            this.btnMobileMaskCategory.Size = new System.Drawing.Size(92, 64);
+            this.btnMobileMaskCategory.TabIndex = 5;
+            this.btnMobileMaskCategory.Text = "PREUZMI KATEGORIJE MOBILNIH MASKI";
+            this.btnMobileMaskCategory.UseVisualStyleBackColor = false;
+            this.btnMobileMaskCategory.Click += new System.EventHandler(this.btnMobileMaskCategory_Click);
+            // 
             // btnPhoneMask
             // 
             this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -339,12 +371,12 @@
             this.btnPhoneMask.UseVisualStyleBackColor = false;
             this.btnPhoneMask.Click += new System.EventHandler(this.btnPhoneMask_Click);
             // 
-            // bntDigitalVisionMobilePhones
+            // btnDigitalVisionMobilePhones
             // 
             this.btnDigitalVisionMobilePhones.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(9, 19);
-            this.btnDigitalVisionMobilePhones.Name = "bntDigitalVisionMobilePhones";
+            this.btnDigitalVisionMobilePhones.Name = "btnDigitalVisionMobilePhones";
             this.btnDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
             this.btnDigitalVisionMobilePhones.TabIndex = 0;
             this.btnDigitalVisionMobilePhones.Text = "PREUZMI MOBILNE TELEFONE";
@@ -401,35 +433,6 @@
             this.oPROGRAMUToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.oPROGRAMUToolStripMenuItem.Text = "O PROGRAMU";
             this.oPROGRAMUToolStripMenuItem.Click += new System.EventHandler(this.oPROGRAMUToolStripMenuItem_Click);
-            // 
-            // btnMobileMaskCategory
-            // 
-            this.btnMobileMaskCategory.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnMobileMaskCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMobileMaskCategory.Location = new System.Drawing.Point(107, 19);
-            this.btnMobileMaskCategory.Name = "btnMobileMaskCategory";
-            this.btnMobileMaskCategory.Size = new System.Drawing.Size(92, 64);
-            this.btnMobileMaskCategory.TabIndex = 5;
-            this.btnMobileMaskCategory.Text = "PREUZMI KATEGORIJE MOBILNIH MASKI";
-            this.btnMobileMaskCategory.UseVisualStyleBackColor = false;
-            this.btnMobileMaskCategory.Click += new System.EventHandler(this.btnMobileMaskCategory_Click);
-            // 
-            // cbMobilePhoneMasks
-            // 
-            this.cbMobilePhoneMasks.FormattingEnabled = true;
-            this.cbMobilePhoneMasks.Location = new System.Drawing.Point(150, 97);
-            this.cbMobilePhoneMasks.Name = "cbMobilePhoneMasks";
-            this.cbMobilePhoneMasks.Size = new System.Drawing.Size(121, 21);
-            this.cbMobilePhoneMasks.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 105);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "KATEGORIJA MASKI";
             // 
             // KupujemProdajemMainForm
             // 

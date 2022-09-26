@@ -26,7 +26,7 @@ namespace WinFormsWebBrowser
         #region [ Private Properties ]
 
         private Uri baseUri = null;
-        private enum TypeOfWebPage { None = 0, DigitalVisionMobilePhones, DigitalVisionPhoneMasks, DigitalVisionPhoneMasksCategory, KupujemProdajemLogin, KupujemProdajemOglasi };
+        private enum TypeOfWebPage { None = 0, DigitalVisionMobilePhones, DigitalVisionPhoneMasks, DigitalVisionPhoneMasksCategory, DigitalVisionPhoneMaskSelection, KupujemProdajemLogin, KupujemProdajemOglasi };
 
         private TypeOfWebPage currentTypeOfWebPage = TypeOfWebPage.None;
 
@@ -104,24 +104,34 @@ namespace WinFormsWebBrowser
                 case TypeOfWebPage.DigitalVisionMobilePhones:
 
                     DigitalVisionGetMobilePhones();
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
                     break;
                 case TypeOfWebPage.DigitalVisionPhoneMasks:
 
                     DigitalVisionGetMobilePhoneMasks();
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
                     break;
                 case TypeOfWebPage.DigitalVisionPhoneMasksCategory:
 
                     DigitalVisionMobileMaskCategory();
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
                     break;
                 case TypeOfWebPage.KupujemProdajemLogin:
 
                     KupujemProdajemLogin();
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
                     break;
                 case TypeOfWebPage.KupujemProdajemOglasi:
 
                     KupujemProdajemOglasi();
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
+                    break;
+                case TypeOfWebPage.DigitalVisionPhoneMaskSelection:
+                    // DO NOTHING
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
                     break;
                 case TypeOfWebPage.None:
+                    this.currentTypeOfWebPage = TypeOfWebPage.None;
                     break;
                 default:
                     break;
@@ -142,8 +152,9 @@ namespace WinFormsWebBrowser
         private void btnPhoneMask_Click(object sender, EventArgs e)
         {
             this.baseUri = new Uri("https://digitalvision.rs");
-            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasksCategory;
-            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + this.cbMobilePhoneMasks.SelectedText));
+            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasks;
+            string targetUri = ((DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem).Link;
+            this.webBrowser.Navigate(targetUri);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnPhoneMask.Enabled = false;
         }
@@ -155,6 +166,13 @@ namespace WinFormsWebBrowser
             this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/torbice-za-telefone"));
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnMobileMaskCategory.Enabled = false;
+        }
+
+        private void cbMobilePhoneMasks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.baseUri = new Uri(((DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem).Link);
+            this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMaskSelection;
+            this.webBrowser.Navigate(new Uri(baseUri.OriginalString));
         }
 
         private void btnKupujemProdajemLogin_Click(object sender, EventArgs e)
