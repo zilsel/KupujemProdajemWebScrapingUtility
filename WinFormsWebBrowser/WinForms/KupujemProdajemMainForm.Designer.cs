@@ -65,6 +65,8 @@
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.oPROGRAMUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tlpWebBrowser = new System.Windows.Forms.TableLayoutPanel();
+            this.tbAddressBar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -74,16 +76,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbArticleImage)).BeginInit();
             this.groupBoxOglasi.SuspendLayout();
             this.mainMenu.SuspendLayout();
+            this.tlpWebBrowser.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser
             // 
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(3, 3);
+            this.webBrowser.Location = new System.Drawing.Point(3, 29);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(1193, 400);
+            this.webBrowser.Size = new System.Drawing.Size(1187, 368);
             this.webBrowser.TabIndex = 0;
             // 
             // splitContainer
@@ -96,7 +99,7 @@
             // 
             // splitContainer.Panel1
             // 
-            this.splitContainer.Panel1.Controls.Add(this.webBrowser);
+            this.splitContainer.Panel1.Controls.Add(this.tlpWebBrowser);
             this.splitContainer.Panel1.Margin = new System.Windows.Forms.Padding(3);
             this.splitContainer.Panel1.Padding = new System.Windows.Forms.Padding(3);
             // 
@@ -253,6 +256,7 @@
             // btnLoadArticles
             // 
             this.btnLoadArticles.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnLoadArticles.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLoadArticles.Location = new System.Drawing.Point(191, 158);
             this.btnLoadArticles.Name = "btnLoadArticles";
             this.btnLoadArticles.Size = new System.Drawing.Size(136, 51);
@@ -281,6 +285,7 @@
             // btnNextArticl
             // 
             this.btnNextArticl.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnNextArticl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNextArticl.Location = new System.Drawing.Point(333, 158);
             this.btnNextArticl.Name = "btnNextArticl";
             this.btnNextArticl.Size = new System.Drawing.Size(151, 51);
@@ -303,6 +308,7 @@
             // 
             this.btnKupujemProdajemLogin.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnKupujemProdajemLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnKupujemProdajemLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnKupujemProdajemLogin.Location = new System.Drawing.Point(6, 19);
             this.btnKupujemProdajemLogin.Name = "btnKupujemProdajemLogin";
             this.btnKupujemProdajemLogin.Size = new System.Drawing.Size(129, 30);
@@ -366,6 +372,7 @@
             // 
             this.btnMobileMaskCategory.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnMobileMaskCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMobileMaskCategory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMobileMaskCategory.Location = new System.Drawing.Point(6, 16);
             this.btnMobileMaskCategory.Name = "btnMobileMaskCategory";
             this.btnMobileMaskCategory.Size = new System.Drawing.Size(92, 64);
@@ -378,6 +385,7 @@
             // 
             this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPhoneMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPhoneMask.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPhoneMask.Location = new System.Drawing.Point(104, 16);
             this.btnPhoneMask.Name = "btnPhoneMask";
             this.btnPhoneMask.Size = new System.Drawing.Size(92, 64);
@@ -390,6 +398,7 @@
             // 
             this.btnDigitalVisionMobilePhones.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDigitalVisionMobilePhones.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(202, 16);
             this.btnDigitalVisionMobilePhones.Name = "btnDigitalVisionMobilePhones";
             this.btnDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
@@ -454,6 +463,32 @@
             this.oPROGRAMUToolStripMenuItem.Text = "O PROGRAMU";
             this.oPROGRAMUToolStripMenuItem.Click += new System.EventHandler(this.oPROGRAMUToolStripMenuItem_Click);
             // 
+            // tlpWebBrowser
+            // 
+            this.tlpWebBrowser.ColumnCount = 1;
+            this.tlpWebBrowser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpWebBrowser.Controls.Add(this.webBrowser, 0, 1);
+            this.tlpWebBrowser.Controls.Add(this.tbAddressBar, 0, 0);
+            this.tlpWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpWebBrowser.Location = new System.Drawing.Point(3, 3);
+            this.tlpWebBrowser.Name = "tlpWebBrowser";
+            this.tlpWebBrowser.RowCount = 2;
+            this.tlpWebBrowser.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpWebBrowser.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpWebBrowser.Size = new System.Drawing.Size(1193, 400);
+            this.tlpWebBrowser.TabIndex = 1;
+            // 
+            // tbAddressBar
+            // 
+            this.tbAddressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAddressBar.Location = new System.Drawing.Point(3, 3);
+            this.tbAddressBar.Name = "tbAddressBar";
+            this.tbAddressBar.ReadOnly = true;
+            this.tbAddressBar.Size = new System.Drawing.Size(1187, 20);
+            this.tbAddressBar.TabIndex = 1;
+            this.tbAddressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tbAddressBar_MouseMove);
+            // 
             // KupujemProdajemMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +514,8 @@
             this.groupBoxOglasi.PerformLayout();
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
+            this.tlpWebBrowser.ResumeLayout(false);
+            this.tlpWebBrowser.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,6 +558,8 @@
         private System.Windows.Forms.Button btnMobileMaskCategory;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.TableLayoutPanel tlpWebBrowser;
+        private System.Windows.Forms.TextBox tbAddressBar;
     }
 }
 

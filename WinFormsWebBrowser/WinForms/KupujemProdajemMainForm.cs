@@ -141,6 +141,10 @@ namespace WinFormsWebBrowser
             this.btnDigitalVisionMobilePhones.Enabled = true;
         }
 
+        private void tbAddressBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.toolTip.SetToolTip((Control)sender, "ADRESA TRENUTNO PRIKAZANE WEB STRANICE");
+        }
         private void btnRefresh_MouseMove(object sender, MouseEventArgs e)
         {
             this.toolTip.SetToolTip((Control)sender, "PONOVO UČITAJ KATEGORIJU U OKVIRU WEB BROWSERA");
@@ -150,7 +154,9 @@ namespace WinFormsWebBrowser
         {
             this.baseUri = new Uri("https://digitalvision.rs");
             this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionMobilePhones;
-            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/razno-2841"));
+            Uri address = new Uri(baseUri.OriginalString + @"/razno-2841");
+            this.tbAddressBar.Text = address.OriginalString;
+            this.webBrowser.Navigate(address);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnDigitalVisionMobilePhones.Enabled = false;
         }
@@ -163,12 +169,15 @@ namespace WinFormsWebBrowser
             DigitalVisionDOMParser.PhoneMaskCategoryItem selectedItem = (DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem;
             if(selectedItem != null)
             {
-                this.webBrowser.Navigate(new Uri(selectedItem.Link));
+                Uri address = new Uri(selectedItem.Link);
+                this.tbAddressBar.Text = address.OriginalString;
+                this.webBrowser.Navigate(address);
             }
             else
             {
                 string wd = Directory.GetCurrentDirectory();
                 string defaultHtmlPagePath = "file://" + Path.Combine(wd, "HTMLPages", Resources.DefaultPageUrl);
+                this.tbAddressBar.Text = "GREŠKA PRILIKOM KORIŠĆENJA PROGRAMA";
                 this.webBrowser.Navigate(defaultHtmlPagePath);
                 return;
             }
@@ -181,7 +190,9 @@ namespace WinFormsWebBrowser
         {
             this.baseUri = new Uri("https://digitalvision.rs");
             this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasksCategory;
-            this.webBrowser.Navigate(new Uri(baseUri.OriginalString + @"/torbice-za-telefone"));
+            Uri address = new Uri(baseUri.OriginalString + @"/torbice-za-telefone");
+            this.tbAddressBar.Text = address.OriginalString;
+            this.webBrowser.Navigate(address);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnMobileMaskCategory.Enabled = false;
         }
@@ -190,13 +201,16 @@ namespace WinFormsWebBrowser
         {
             this.baseUri = new Uri(((DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem).Link);
             this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMaskSelection;
-            this.webBrowser.Navigate(new Uri(baseUri.OriginalString));
+            Uri address = new Uri(baseUri.OriginalString);
+            this.tbAddressBar.Text = address.OriginalString;
+            this.webBrowser.Navigate(address);
         }
 
         private void btnKupujemProdajemLogin_Click(object sender, EventArgs e)
         {
             this.baseUri = new Uri("https://www.kupujemprodajem.com/login");
             this.currentTypeOfWebPage = TypeOfWebPage.KupujemProdajemLogin;
+            this.tbAddressBar.Text = this.baseUri.OriginalString;
             this.webBrowser.Navigate(this.baseUri);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnKupujemProdajemLogin.Enabled = false;
@@ -285,6 +299,7 @@ namespace WinFormsWebBrowser
 
             this.baseUri = new Uri("https://www.kupujemprodajem.com/oglasi.php?action=new");
             this.currentTypeOfWebPage = TypeOfWebPage.KupujemProdajemOglasi;
+            this.tbAddressBar.Text = this.baseUri.OriginalString;
             this.webBrowser.Navigate(this.baseUri);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnLoadArticles.Enabled = false;
