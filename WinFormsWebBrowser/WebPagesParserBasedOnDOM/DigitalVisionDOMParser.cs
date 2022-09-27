@@ -47,11 +47,55 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
             //TODO: Extract Description
         }
 
+        private static void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (processed) return;
+
+            using (StreamWriter sw = new StreamWriter(articleFilePath, true))
+            {
+                WebBrowser webBrowser = (WebBrowser)sender;
+
+                HtmlDocument htmlDocument = webBrowser.Document;
+
+                HtmlElement htmlElement = htmlDocument.GetElementById("tabs-1");
+
+                string articleDescription = "Desc$";
+                string description = htmlElement.InnerText;
+                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ');
+                sw.WriteLine(articleDescription + oneLineDescription);
+
+                processed = true;
+            }
+        }
+
+
+        private static string articleFilePath = "";
+        private static bool processed = false;
+
         public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
         {
             ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
-            //TODO: Extract Description
+            string[] loadedArticles = Directory.GetDirectories(tbSavePath.Text);
+
+            for(int i=0; i < loadedArticles.Length; i++)
+            {
+                processed = false;
+                DirectoryInfo directoryInfo = new DirectoryInfo(loadedArticles[i]);
+                string webArticleTitle = directoryInfo.Name;
+
+                articleFilePath = Path.Combine(loadedArticles[i], webArticleTitle + ".txt");
+                using (StreamReader sr = new StreamReader(articleFilePath))
+                {
+                    string title = sr.ReadLine();
+
+                    string[] webLink = sr.ReadLine().Split('$');
+                    string webPageLink = webLink[1];
+
+                    webBrowser.Navigate(webPageLink);
+                    webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
+                }
+            }
         }
 
         public static void DigitalVisionExtractMobilePhoneMasksCategoryFromPage(WebBrowser webBrowser, ProgressBar progressBar,
