@@ -133,6 +133,15 @@ namespace WinFormsWebBrowser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DefaultPage.html.
+        /// </summary>
+        internal static string DefaultPageUrl {
+            get {
+                return ResourceManager.GetString("DefaultPageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to data[description].
         /// </summary>
         internal static string descriptionDomId {

@@ -14,6 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsWebBrowser.Properties;
 using WinFormsWebBrowser.WebPagesParserBasedOnDOM;
 
 namespace WinFormsWebBrowser
@@ -153,8 +154,20 @@ namespace WinFormsWebBrowser
         {
             this.baseUri = new Uri("https://digitalvision.rs");
             this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMasks;
-            string targetUri = ((DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem).Link;
-            this.webBrowser.Navigate(targetUri);
+
+            DigitalVisionDOMParser.PhoneMaskCategoryItem selectedItem = (DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem;
+            if(selectedItem != null)
+            {
+                this.webBrowser.Navigate(new Uri(selectedItem.Link));
+            }
+            else
+            {
+                string wd = Directory.GetCurrentDirectory();
+                string defaultHtmlPagePath = "file://" + Path.Combine(wd, "HTMLPages", Resources.DefaultPageUrl);
+                this.webBrowser.Navigate(defaultHtmlPagePath);
+                return;
+            }
+            
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             this.btnPhoneMask.Enabled = false;
         }

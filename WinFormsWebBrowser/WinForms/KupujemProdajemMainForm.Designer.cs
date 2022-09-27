@@ -351,7 +351,7 @@
             // 
             this.btnMobileMaskCategory.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnMobileMaskCategory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMobileMaskCategory.Location = new System.Drawing.Point(107, 19);
+            this.btnMobileMaskCategory.Location = new System.Drawing.Point(6, 16);
             this.btnMobileMaskCategory.Name = "btnMobileMaskCategory";
             this.btnMobileMaskCategory.Size = new System.Drawing.Size(92, 64);
             this.btnMobileMaskCategory.TabIndex = 5;
@@ -363,7 +363,7 @@
             // 
             this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPhoneMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPhoneMask.Location = new System.Drawing.Point(205, 19);
+            this.btnPhoneMask.Location = new System.Drawing.Point(104, 16);
             this.btnPhoneMask.Name = "btnPhoneMask";
             this.btnPhoneMask.Size = new System.Drawing.Size(92, 64);
             this.btnPhoneMask.TabIndex = 4;
@@ -375,12 +375,13 @@
             // 
             this.btnDigitalVisionMobilePhones.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(9, 19);
+            this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(202, 16);
             this.btnDigitalVisionMobilePhones.Name = "btnDigitalVisionMobilePhones";
             this.btnDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
             this.btnDigitalVisionMobilePhones.TabIndex = 0;
             this.btnDigitalVisionMobilePhones.Text = "PREUZMI MOBILNE TELEFONE";
             this.btnDigitalVisionMobilePhones.UseVisualStyleBackColor = false;
+            this.btnDigitalVisionMobilePhones.Visible = false;
             this.btnDigitalVisionMobilePhones.Click += new System.EventHandler(this.btnExtractDataDigitalVisionMobilePhones_Click);
             // 
             // progressBar
