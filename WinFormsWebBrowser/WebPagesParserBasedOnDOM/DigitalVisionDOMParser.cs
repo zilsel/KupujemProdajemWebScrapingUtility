@@ -44,12 +44,14 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                                                                     TextBox tbSavePath, Uri baseUri)
         {
             ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+            //TODO: Extract Description
         }
 
         public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
         {
             ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+            //TODO: Extract Description
         }
 
         public static void DigitalVisionExtractMobilePhoneMasksCategoryFromPage(WebBrowser webBrowser, ProgressBar progressBar,
@@ -148,11 +150,13 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         string articleTitle = "";
                         string articleLink = "";
                         string articleImage = "";
+                        string amount = "";
 
                         // Create a pattern for article elements:
                         string patternTitle = @".*<a class=\""(.*)\"" href=\""(.*)\"">(.*)</a>";
                         string patternLink = @"href\s*=\s*(?:[""'](?<1>[^""']*)[""']|(?<1>[^>\s]+))";
                         string patternImage = @"img\s+(?:[^>]*?\s+)?src=([""'])(.*?)\1";
+                        string patternAmount = @"<div class=""cena"">(.*?)</div>";
 
                         // Create a regular expression:
                         // Title:
@@ -163,7 +167,12 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         // Link:
                         rg = new Regex(patternLink, RegexOptions.IgnoreCase | RegexOptions.Compiled);
                         matched = rg.Matches(innerAHrefHtml);
-                        articleLink = matched[0].Groups[0].Value;
+                        articleLink = matched[0].Groups[1].Value;
+
+                        // Amount:
+                        rg = new Regex(patternAmount, RegexOptions.IgnoreCase | RegexOptions.Compiled);
+                        matched = rg.Matches(innerAHrefHtml);
+                        amount = matched[1].Groups[1].Value.Replace("Sa PDV-om:", "").Replace("RSD", "").Trim();
 
                         // Image:
                         rg = new Regex(patternImage, RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -183,8 +192,10 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 
                         using (StreamWriter file = new StreamWriter(articleFile, append: true))
                         {
-                            file.WriteLine(articleTitle);
-                            file.WriteLine(articleLink);
+                            file.WriteLine("Title$" + articleTitle);
+                            file.WriteLine("WebLink$" + new Uri(baseUri, articleLink).OriginalString);
+                            file.WriteLine("Amount$" + amount);
+                            // Description is added after first iteration
                         }
 
                         using (WebClient webClient = new WebClient())
