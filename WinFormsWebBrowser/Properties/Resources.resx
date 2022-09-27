@@ -117,14 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="iphone_afraid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iphone_afraid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultPageUrl" xml:space="preserve">
+    <value>DefaultPage.html</value>
+  </data>
+  <data name="goodsDomId" xml:space="preserve">
+    <value>data[ad_kind]goods</value>
+  </data>
   <data name="registrationNumberDomId" xml:space="preserve">
     <value>data[d_registration_number]</value>
   </data>
   <data name="accept_yesDomId" xml:space="preserve">
     <value>accept_yes</value>
-  </data>
-  <data name="currencyRsdDomId" xml:space="preserve">
-    <value>currency_rsd</value>
   </data>
   <data name="swear_yesDomId" xml:space="preserve">
     <value>swear_yes</value>
@@ -159,14 +166,10 @@
   <data name="companyAddressElementDomId" xml:space="preserve">
     <value>data[d_address]</value>
   </data>
-  <data name="goodsDomId" xml:space="preserve">
-    <value>data[ad_kind]goods</value>
+  <data name="currencyRsdDomId" xml:space="preserve">
+    <value>currency_rsd</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="iphone_afraid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iphone_afraid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DefaultPageUrl" xml:space="preserve">
-    <value>DefaultPage.html</value>
+  <data name="Double-J-Design-Ravenna-3d-Reload" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Double-J-Design-Ravenna-3d-Reload.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

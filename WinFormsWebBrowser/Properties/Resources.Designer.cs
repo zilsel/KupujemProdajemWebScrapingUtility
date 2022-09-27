@@ -151,6 +151,16 @@ namespace WinFormsWebBrowser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Double_J_Design_Ravenna_3d_Reload {
+            get {
+                object obj = ResourceManager.GetObject("Double-J-Design-Ravenna-3d-Reload", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to data[ad_kind]goods.
         /// </summary>
         internal static string goodsDomId {

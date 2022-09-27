@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KupujemProdajemMainForm));
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
@@ -51,6 +52,7 @@
             this.pbArticleImage = new System.Windows.Forms.PictureBox();
             this.btnKupujemProdajemLogin = new System.Windows.Forms.Button();
             this.groupBoxOglasi = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cbMobilePhoneMasks = new System.Windows.Forms.ComboBox();
             this.btnMobileMaskCategory = new System.Windows.Forms.Button();
@@ -62,6 +64,7 @@
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.oPROGRAMUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -145,7 +148,7 @@
             this.groupBoxKupujemProdajem.Size = new System.Drawing.Size(821, 218);
             this.groupBoxKupujemProdajem.TabIndex = 0;
             this.groupBoxKupujemProdajem.TabStop = false;
-            this.groupBoxKupujemProdajem.Text = "KUPUJEM PRODAJEM";
+            this.groupBoxKupujemProdajem.Text = "KUPUJEM PRODAJEM OGLAŠAVANJE";
             // 
             // radioButton2
             // 
@@ -310,6 +313,7 @@
             // 
             // groupBoxOglasi
             // 
+            this.groupBoxOglasi.Controls.Add(this.btnRefresh);
             this.groupBoxOglasi.Controls.Add(this.label5);
             this.groupBoxOglasi.Controls.Add(this.cbMobilePhoneMasks);
             this.groupBoxOglasi.Controls.Add(this.btnMobileMaskCategory);
@@ -325,24 +329,35 @@
             this.groupBoxOglasi.Size = new System.Drawing.Size(366, 218);
             this.groupBoxOglasi.TabIndex = 1;
             this.groupBoxOglasi.TabStop = false;
-            this.groupBoxOglasi.Text = "OGLASI";
+            this.groupBoxOglasi.Text = "PREUZIMANJE OGLASA";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.Image = global::WinFormsWebBrowser.Properties.Resources.Double_J_Design_Ravenna_3d_Reload;
+            this.btnRefresh.Location = new System.Drawing.Point(178, 96);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(47, 38);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnRefresh_MouseMove);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 105);
+            this.label5.Location = new System.Drawing.Point(9, 97);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 13);
+            this.label5.Size = new System.Drawing.Size(130, 13);
             this.label5.TabIndex = 7;
-            this.label5.Text = "KATEGORIJA MASKI";
+            this.label5.Text = "KATEGORIJA MASKI:";
             // 
             // cbMobilePhoneMasks
             // 
             this.cbMobilePhoneMasks.DisplayMember = "Name";
             this.cbMobilePhoneMasks.FormattingEnabled = true;
-            this.cbMobilePhoneMasks.Location = new System.Drawing.Point(150, 97);
+            this.cbMobilePhoneMasks.Location = new System.Drawing.Point(9, 113);
             this.cbMobilePhoneMasks.Name = "cbMobilePhoneMasks";
-            this.cbMobilePhoneMasks.Size = new System.Drawing.Size(121, 21);
+            this.cbMobilePhoneMasks.Size = new System.Drawing.Size(163, 21);
             this.cbMobilePhoneMasks.TabIndex = 6;
             this.cbMobilePhoneMasks.ValueMember = "Link";
             this.cbMobilePhoneMasks.SelectedIndexChanged += new System.EventHandler(this.cbMobilePhoneMasks_SelectedIndexChanged);
@@ -386,7 +401,9 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(9, 186);
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBar.Location = new System.Drawing.Point(9, 189);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(351, 23);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -394,17 +411,19 @@
             // 
             // tbSavePath
             // 
-            this.tbSavePath.Location = new System.Drawing.Point(9, 146);
+            this.tbSavePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSavePath.Location = new System.Drawing.Point(9, 163);
             this.tbSavePath.Name = "tbSavePath";
             this.tbSavePath.ReadOnly = true;
-            this.tbSavePath.Size = new System.Drawing.Size(262, 20);
+            this.tbSavePath.Size = new System.Drawing.Size(351, 20);
             this.tbSavePath.TabIndex = 1;
             // 
             // lblSavePath
             // 
             this.lblSavePath.AutoSize = true;
             this.lblSavePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSavePath.Location = new System.Drawing.Point(9, 130);
+            this.lblSavePath.Location = new System.Drawing.Point(9, 147);
             this.lblSavePath.Name = "lblSavePath";
             this.lblSavePath.Size = new System.Drawing.Size(216, 13);
             this.lblSavePath.TabIndex = 2;
@@ -500,6 +519,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbMobilePhoneMasks;
         private System.Windows.Forms.Button btnMobileMaskCategory;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

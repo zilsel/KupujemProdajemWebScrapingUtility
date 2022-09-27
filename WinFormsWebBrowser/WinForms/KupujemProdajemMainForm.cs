@@ -141,6 +141,11 @@ namespace WinFormsWebBrowser
             this.btnDigitalVisionMobilePhones.Enabled = true;
         }
 
+        private void btnRefresh_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.toolTip.SetToolTip((Control)sender, "PONOVO UČITAJ KATEGORIJU U OKVIRU WEB BROWSERA");
+        }
+
         private void btnExtractDataDigitalVisionMobilePhones_Click(object sender, EventArgs e)
         {
             this.baseUri = new Uri("https://digitalvision.rs");
