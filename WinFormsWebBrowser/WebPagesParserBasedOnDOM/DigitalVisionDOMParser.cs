@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HtmlDocument = System.Windows.Forms.HtmlDocument;
 
 namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 {
@@ -47,28 +49,6 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
             //TODO: Extract Description
         }
 
-        private static void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            if (processed) return;
-
-            using (StreamWriter sw = new StreamWriter(articleFilePath, true))
-            {
-                WebBrowser webBrowser = (WebBrowser)sender;
-
-                HtmlDocument htmlDocument = webBrowser.Document;
-
-                HtmlElement htmlElement = htmlDocument.GetElementById("tabs-1");
-
-                string articleDescription = "Desc$";
-                string description = htmlElement.InnerText;
-                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ');
-                sw.WriteLine(articleDescription + oneLineDescription);
-
-                processed = true;
-            }
-        }
-
-
         private static string articleFilePath = "";
         private static bool processed = false;
 
@@ -76,24 +56,48 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                                                                     TextBox tbSavePath, Uri baseUri)
         {
             ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+
             string[] loadedArticles = Directory.GetDirectories(tbSavePath.Text);
 
-            for(int i=0; i < loadedArticles.Length; i++)
+            for (int i = 0; i < loadedArticles.Length; i++)
             {
                 processed = false;
                 DirectoryInfo directoryInfo = new DirectoryInfo(loadedArticles[i]);
                 string webArticleTitle = directoryInfo.Name;
 
+                string title = String.Empty;
+                string[] webLink;
+                string webPageLink = String.Empty;
+
                 articleFilePath = Path.Combine(loadedArticles[i], webArticleTitle + ".txt");
                 using (StreamReader sr = new StreamReader(articleFilePath))
                 {
-                    string title = sr.ReadLine();
+                    title = sr.ReadLine();
 
-                    string[] webLink = sr.ReadLine().Split('$');
-                    string webPageLink = webLink[1];
+                    webLink = sr.ReadLine().Split('$');
+                    webPageLink = webLink[1];
+                }
 
-                    webBrowser.Navigate(webPageLink);
-                    webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
+                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(webPageLink);
+                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+
+                var responseString = new StreamReader(myHttpWebResponse.GetResponseStream()).ReadToEnd();
+
+                HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+                htmlDocument.LoadHtml(responseString);
+
+                string description = String.Empty;
+                foreach (HtmlNode div in htmlDocument.DocumentNode.SelectNodes("//*[@id=\"tabs-1\"]"))
+                {
+                    description = div.InnerHtml;
+                }
+
+                string articleDescription = "Desc$";
+                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ');
+
+                using (StreamWriter sw = new StreamWriter(articleFilePath, true))
+                {
+                    sw.WriteLine(articleDescription + oneLineDescription);
                 }
             }
         }
