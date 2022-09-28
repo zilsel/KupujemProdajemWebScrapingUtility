@@ -100,6 +100,12 @@ namespace WinFormsWebBrowser
 
         private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            if(((WebBrowser)sender).ReadyState != WebBrowserReadyState.Complete ||
+               ((WebBrowser)sender).Url.OriginalString.Contains("file://"))
+            {
+                return;
+            }
+
             switch (currentTypeOfWebPage)
             {
                 case TypeOfWebPage.DigitalVisionMobilePhones:
@@ -157,7 +163,6 @@ namespace WinFormsWebBrowser
             Uri address = new Uri(baseUri.OriginalString + @"/razno-2841");
             this.tbAddressBar.Text = address.OriginalString;
             this.webBrowser.Navigate(address);
-            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             AccessUIControls(false);
         }
 
@@ -172,6 +177,7 @@ namespace WinFormsWebBrowser
                 Uri address = new Uri(selectedItem.Link);
                 this.tbAddressBar.Text = address.OriginalString;
                 this.webBrowser.Navigate(address);
+                AccessUIControls(false);
             }
             else
             {
@@ -181,9 +187,6 @@ namespace WinFormsWebBrowser
                 this.webBrowser.Navigate(defaultHtmlPagePath);
                 return;
             }
-            
-            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            AccessUIControls(false);
         }
 
         private void btnMobileMaskCategory_Click(object sender, EventArgs e)
@@ -193,7 +196,6 @@ namespace WinFormsWebBrowser
             Uri address = new Uri(baseUri.OriginalString + @"/torbice-za-telefone");
             this.tbAddressBar.Text = address.OriginalString;
             this.webBrowser.Navigate(address);
-            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
             AccessUIControls(false);
         }
 
@@ -213,7 +215,7 @@ namespace WinFormsWebBrowser
             this.currentTypeOfWebPage = TypeOfWebPage.KupujemProdajemLogin;
             this.tbAddressBar.Text = this.baseUri.OriginalString;
             this.webBrowser.Navigate(this.baseUri);
-            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
+
             AccessUIControls(false);
         }
 
@@ -267,6 +269,9 @@ namespace WinFormsWebBrowser
 
         private void UploadArticleToKupujemProdajem()
         {
+            if (this.loadedArticles.Length == 0)
+                return;
+
             DirectoryInfo directoryInfo = new DirectoryInfo(this.loadedArticles[articleIndex]);
             this.webArticleTitle = directoryInfo.Name;
             this.lblArticleName.Text = "NAZIV ARTIKLA ({0}/{1}):";
@@ -305,7 +310,7 @@ namespace WinFormsWebBrowser
             this.currentTypeOfWebPage = TypeOfWebPage.KupujemProdajemOglasi;
             this.tbAddressBar.Text = this.baseUri.OriginalString;
             this.webBrowser.Navigate(this.baseUri);
-            this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
+
             AccessUIControls(false);
 
         }

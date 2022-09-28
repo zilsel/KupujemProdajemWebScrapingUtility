@@ -47,8 +47,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
         public static void DigitalVisionExtractMobileDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
         {
-            ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
-            //TODO: Extract Description
+            // TODO: implement functionality for mobile phones
         }
 
         private static string articleFilePath = "";
@@ -57,61 +56,13 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
         public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
         {
-            ExtractDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
-
-            string[] loadedArticles = Directory.GetDirectories(tbSavePath.Text);
-
-            for (int i = 0; i < loadedArticles.Length; i++)
-            {
-                processed = false;
-                DirectoryInfo directoryInfo = new DirectoryInfo(loadedArticles[i]);
-                string webArticleTitle = directoryInfo.Name;
-
-                string[] title;
-                string[] webLink;
-                string webPageLink = String.Empty;
-
-                articleFilePath = Path.Combine(loadedArticles[i], webArticleTitle + ".txt");
-                using (StreamReader sr = new StreamReader(articleFilePath))
-                {
-                    title = sr.ReadLine().Split('$');
-                    webLink = sr.ReadLine().Split('$');
-                    webPageLink = webLink[1];
-                }
-
-                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(webPageLink);
-                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-
-                var responseString = new StreamReader(myHttpWebResponse.GetResponseStream()).ReadToEnd();
-
-                HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
-                htmlDocument.LoadHtml(responseString);
-
-                string description = String.Empty;
-                foreach (HtmlNode div in htmlDocument.DocumentNode.SelectNodes("//*[@id=\"tabs-1\"]"))
-                {
-                    description = div.InnerHtml;
-                }
-
-                string articleDescription = "Desc$";
-                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ').Trim();
-                if (string.IsNullOrEmpty(oneLineDescription))
-                {
-                    oneLineDescription = title[1];
-                }
-                oneLineDescription += "- Za sve informacije obratiti se putem kontakta, telefon i/ili porukom.";
-
-                using (StreamWriter sw = new StreamWriter(articleFilePath, true))
-                {
-                    sw.WriteLine(articleDescription + oneLineDescription);
-                }
-            }
+            ExtractMobilePhoneMasksDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
         }
 
         public static void DigitalVisionExtractMobilePhoneMasksCategoryFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri, ComboBox cbPhoneMasksCategory)
         {
-            ExtractCategoryFromHtml(webBrowser, progressBar, tbSavePath, baseUri, cbPhoneMasksCategory);
+            ExtractMobilePhoneMasksCategoryFromHtml(webBrowser, progressBar, tbSavePath, baseUri, cbPhoneMasksCategory);
         }
 
         private static string RemoveSpecialCharacters(string str)
@@ -134,7 +85,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
         }
 
 
-        private static void ExtractCategoryFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri, ComboBox phoneMasksCategory)
+        private static void ExtractMobilePhoneMasksCategoryFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri, ComboBox phoneMasksCategory)
         {
             HtmlDocument htmlDocument = webBrowser.Document;
 
@@ -171,7 +122,8 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
             }
         }
 
-        private static void ExtractDataFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri)
+        // TODO: Method refactoring and optimization
+        private static void ExtractMobilePhoneMasksDataFromHtml(WebBrowser webBrowser, ProgressBar progressBar, TextBox tbSavePath, Uri baseUri)
         {
             using (var fbd = new FolderBrowserDialog())
             {
@@ -188,7 +140,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                     HtmlElementCollection childrenHtmlDocument = htmlElementCollection[4].Children;
 
                     progressBar.Minimum = 1;
-                    progressBar.Maximum = childrenHtmlDocument.Count;
+                    progressBar.Maximum = childrenHtmlDocument.Count * 2;
                     progressBar.Value = 1;
                     progressBar.Step = 1;
 
@@ -274,6 +226,61 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         progressBar.PerformStep();
                     }
                 }
+            }
+
+            if (String.IsNullOrEmpty(tbSavePath.Text.Trim()))
+            {
+                return;
+            }
+
+            string[] loadedArticles = Directory.GetDirectories(tbSavePath.Text);
+
+            for (int i = 0; i < loadedArticles.Length; i++)
+            {
+                processed = false;
+                DirectoryInfo directoryInfo = new DirectoryInfo(loadedArticles[i]);
+                string webArticleTitle = directoryInfo.Name;
+
+                string[] title;
+                string[] webLink;
+                string webPageLink = String.Empty;
+
+                articleFilePath = Path.Combine(loadedArticles[i], webArticleTitle + ".txt");
+                using (StreamReader sr = new StreamReader(articleFilePath))
+                {
+                    title = sr.ReadLine().Split('$');
+                    webLink = sr.ReadLine().Split('$');
+                    webPageLink = webLink[1];
+                }
+
+                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(webPageLink);
+                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+
+                var responseString = new StreamReader(myHttpWebResponse.GetResponseStream()).ReadToEnd();
+
+                HtmlAgilityPack.HtmlDocument htmlDocument = new HtmlAgilityPack.HtmlDocument();
+                htmlDocument.LoadHtml(responseString);
+
+                string description = String.Empty;
+                foreach (HtmlNode div in htmlDocument.DocumentNode.SelectNodes("//*[@id=\"tabs-1\"]"))
+                {
+                    description = div.InnerHtml;
+                }
+
+                string articleDescription = "Desc$";
+                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ').Trim();
+                if (string.IsNullOrEmpty(oneLineDescription))
+                {
+                    oneLineDescription = title[1];
+                }
+                oneLineDescription += "- Za sve informacije obratiti se putem kontakta, telefon i/ili porukom.";
+
+                using (StreamWriter sw = new StreamWriter(articleFilePath, true))
+                {
+                    sw.WriteLine(articleDescription + oneLineDescription);
+                }
+
+                progressBar.PerformStep();
             }
         }
     }
