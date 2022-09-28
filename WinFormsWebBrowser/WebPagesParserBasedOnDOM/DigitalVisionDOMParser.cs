@@ -1,6 +1,8 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -257,7 +259,16 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         using (WebClient webClient = new WebClient())
                         {
                             string pathToDownloadImage = System.IO.Path.Combine(articleDirectory, string.Format(@"{0}.png", articleTitle));
+                            string pathToDownloadImageTargetResolution = System.IO.Path.Combine(articleDirectory, string.Format(@"{0}TargetResolution.jpeg", articleTitle));
                             webClient.DownloadFile(new Uri(baseUri.OriginalString + imageSegments[0]), pathToDownloadImage);
+
+                            using (Bitmap bitmap = (Bitmap)Image.FromFile(pathToDownloadImage))
+                            {
+                                using (Bitmap newBitmap = new Bitmap(bitmap, new Size(480, 320)))
+                                {
+                                    newBitmap.Save(pathToDownloadImageTargetResolution, ImageFormat.Jpeg);
+                                }
+                            }
                         }
 
                         progressBar.PerformStep();
