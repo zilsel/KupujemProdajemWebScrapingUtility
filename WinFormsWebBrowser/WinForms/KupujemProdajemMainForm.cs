@@ -201,6 +201,9 @@ namespace WinFormsWebBrowser
 
         private void cbMobilePhoneMasks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbMobilePhoneMasks.SelectedItem == null)
+                return;
+
             this.baseUri = new Uri(((DigitalVisionDOMParser.PhoneMaskCategoryItem)cbMobilePhoneMasks.SelectedItem).Link);
             this.currentTypeOfWebPage = TypeOfWebPage.DigitalVisionPhoneMaskSelection;
             Uri address = new Uri(baseUri.OriginalString);
