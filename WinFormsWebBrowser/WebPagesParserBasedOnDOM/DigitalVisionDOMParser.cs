@@ -65,15 +65,14 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                 DirectoryInfo directoryInfo = new DirectoryInfo(loadedArticles[i]);
                 string webArticleTitle = directoryInfo.Name;
 
-                string title = String.Empty;
+                string[] title;
                 string[] webLink;
                 string webPageLink = String.Empty;
 
                 articleFilePath = Path.Combine(loadedArticles[i], webArticleTitle + ".txt");
                 using (StreamReader sr = new StreamReader(articleFilePath))
                 {
-                    title = sr.ReadLine();
-
+                    title = sr.ReadLine().Split('$');
                     webLink = sr.ReadLine().Split('$');
                     webPageLink = webLink[1];
                 }
@@ -93,7 +92,12 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                 }
 
                 string articleDescription = "Desc$";
-                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ');
+                string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ').Trim();
+                if (string.IsNullOrEmpty(oneLineDescription))
+                {
+                    oneLineDescription = title[1];
+                }
+                oneLineDescription += "- Za sve informacije obratiti se putem kontakta, telefon i/ili porukom.";
 
                 using (StreamWriter sw = new StreamWriter(articleFilePath, true))
                 {
@@ -220,7 +224,11 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         // Amount:
                         rg = new Regex(patternAmount, RegexOptions.IgnoreCase | RegexOptions.Compiled);
                         matched = rg.Matches(innerAHrefHtml);
-                        amount = matched[1].Groups[1].Value.Replace("Sa PDV-om:", "").Replace("RSD", "").Trim();
+                        if (matched.Count > 0 && matched[1].Groups.Count > 0 && matched[1].Groups[1].Value != null && matched[1].Groups[1].Value.Contains("RSD"))
+                        {
+                            amount = matched[1].Groups[1].Value.Replace("Sa PDV-om:", "").Replace("RSD", "").Trim();
+                            amount = Math.Round(float.Parse(amount)).ToString();
+                        }
 
                         // Image:
                         rg = new Regex(patternImage, RegexOptions.IgnoreCase | RegexOptions.Compiled);
