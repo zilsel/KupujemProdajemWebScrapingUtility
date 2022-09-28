@@ -34,8 +34,8 @@
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxKupujemProdajem = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbContact = new System.Windows.Forms.RadioButton();
+            this.rbAmount = new System.Windows.Forms.RadioButton();
             this.articleWebLink = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -127,8 +127,8 @@
             // 
             // groupBoxKupujemProdajem
             // 
-            this.groupBoxKupujemProdajem.Controls.Add(this.radioButton2);
-            this.groupBoxKupujemProdajem.Controls.Add(this.radioButton1);
+            this.groupBoxKupujemProdajem.Controls.Add(this.rbContact);
+            this.groupBoxKupujemProdajem.Controls.Add(this.rbAmount);
             this.groupBoxKupujemProdajem.Controls.Add(this.articleWebLink);
             this.groupBoxKupujemProdajem.Controls.Add(this.label4);
             this.groupBoxKupujemProdajem.Controls.Add(this.label3);
@@ -153,27 +153,27 @@
             this.groupBoxKupujemProdajem.TabStop = false;
             this.groupBoxKupujemProdajem.Text = "KUPUJEM PRODAJEM OGLAŠAVANJE";
             // 
-            // radioButton2
+            // rbContact
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(191, 66);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(83, 17);
-            this.radioButton2.TabIndex = 24;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "KONTAKT";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbContact.AutoSize = true;
+            this.rbContact.Location = new System.Drawing.Point(191, 66);
+            this.rbContact.Name = "rbContact";
+            this.rbContact.Size = new System.Drawing.Size(83, 17);
+            this.rbContact.TabIndex = 24;
+            this.rbContact.Text = "KONTAKT";
+            this.rbContact.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbAmount
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(191, 43);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(58, 17);
-            this.radioButton1.TabIndex = 23;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "CENA";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbAmount.AutoSize = true;
+            this.rbAmount.Checked = true;
+            this.rbAmount.Location = new System.Drawing.Point(191, 43);
+            this.rbAmount.Name = "rbAmount";
+            this.rbAmount.Size = new System.Drawing.Size(58, 17);
+            this.rbAmount.TabIndex = 23;
+            this.rbAmount.TabStop = true;
+            this.rbAmount.Text = "CENA";
+            this.rbAmount.UseVisualStyleBackColor = true;
             // 
             // articleWebLink
             // 
@@ -549,8 +549,8 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem about;
         private System.Windows.Forms.ToolStripMenuItem oPROGRAMUToolStripMenuItem;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbContact;
+        private System.Windows.Forms.RadioButton rbAmount;
         private System.Windows.Forms.PictureBox pbArticleImage;
         private System.Windows.Forms.Button btnPhoneMask;
         private System.Windows.Forms.Label label5;

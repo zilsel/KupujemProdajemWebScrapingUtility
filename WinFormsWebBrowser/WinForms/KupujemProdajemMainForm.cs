@@ -58,21 +58,21 @@ namespace WinFormsWebBrowser
         {
             DigitalVisionDOMParser.DigitalVisionExtractMobileDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
 
-            this.btnDigitalVisionMobilePhones.Enabled = true;
+            AccessUIControls(true);
         }
 
         private void DigitalVisionGetMobilePhoneMasks()
         {
             DigitalVisionDOMParser.DigitalVisionExtractMobilePhoneMasksDataFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri);
 
-            this.btnPhoneMask.Enabled = true;
+            AccessUIControls(true);
         }
 
         private void DigitalVisionMobileMaskCategory()
         {
             DigitalVisionDOMParser.DigitalVisionExtractMobilePhoneMasksCategoryFromPage(this.webBrowser, this.progressBar, this.tbSavePath, this.baseUri, this.cbMobilePhoneMasks);
 
-            this.btnMobileMaskCategory.Enabled = true;
+            AccessUIControls(true);
         }
 
         #endregion
@@ -81,7 +81,7 @@ namespace WinFormsWebBrowser
 
         private void KupujemProdajemLogin()
         {
-            this.btnKupujemProdajemLogin.Enabled = true;
+            AccessUIControls(true);
         }
 
         private void KupujemProdajemOglasi()
@@ -89,7 +89,7 @@ namespace WinFormsWebBrowser
             KupujemProdajemDOMParser.KupujemProdajemDOMParserInsertArticles(this.webBrowser, webArticleTitle, webArticleAmount,
                 webArticleDescription, this.tbPIB.Text, this.tbCompanyName.Text, this.tbCompanyAddress.Text);
 
-            this.btnLoadArticles.Enabled = true;
+            AccessUIControls(true);
         }
 
         #endregion
@@ -138,7 +138,7 @@ namespace WinFormsWebBrowser
                     break;
             }
 
-            this.btnDigitalVisionMobilePhones.Enabled = true;
+            AccessUIControls(true);
         }
 
         private void tbAddressBar_MouseMove(object sender, MouseEventArgs e)
@@ -158,7 +158,7 @@ namespace WinFormsWebBrowser
             this.tbAddressBar.Text = address.OriginalString;
             this.webBrowser.Navigate(address);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            this.btnDigitalVisionMobilePhones.Enabled = false;
+            AccessUIControls(false);
         }
 
         private void btnPhoneMask_Click(object sender, EventArgs e)
@@ -183,7 +183,7 @@ namespace WinFormsWebBrowser
             }
             
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            this.btnPhoneMask.Enabled = false;
+            AccessUIControls(false);
         }
 
         private void btnMobileMaskCategory_Click(object sender, EventArgs e)
@@ -194,7 +194,7 @@ namespace WinFormsWebBrowser
             this.tbAddressBar.Text = address.OriginalString;
             this.webBrowser.Navigate(address);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            this.btnMobileMaskCategory.Enabled = false;
+            AccessUIControls(false);
         }
 
         private void cbMobilePhoneMasks_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,7 +213,7 @@ namespace WinFormsWebBrowser
             this.tbAddressBar.Text = this.baseUri.OriginalString;
             this.webBrowser.Navigate(this.baseUri);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            this.btnKupujemProdajemLogin.Enabled = false;
+            AccessUIControls(false);
         }
 
         private void btnArticlPath_Click(object sender, EventArgs e)
@@ -241,7 +241,10 @@ namespace WinFormsWebBrowser
         private void btnNextArticl_Click(object sender, EventArgs e)
         {
             this.articleIndex++;
-            this.btnNextArticl.Enabled = !(this.articleIndex == this.maxArticles);
+            if(this.articleIndex >= this.maxArticles)
+            {
+                return;
+            }
             ClearArticleData();
             UploadArticleToKupujemProdajem();
         }
@@ -302,7 +305,7 @@ namespace WinFormsWebBrowser
             this.tbAddressBar.Text = this.baseUri.OriginalString;
             this.webBrowser.Navigate(this.baseUri);
             this.webBrowser.DocumentCompleted += WebBrowser_DocumentCompleted;
-            this.btnLoadArticles.Enabled = false;
+            AccessUIControls(false);
 
         }
 
@@ -316,6 +319,22 @@ namespace WinFormsWebBrowser
             this.webArticleAmount = String.Empty;
             this.webArticleDescription = String.Empty;
             this.webLink = String.Empty;
+        }
+
+        private void AccessUIControls(bool value)
+        {
+            this.btnMobileMaskCategory.Enabled = value;
+            this.btnPhoneMask.Enabled = value;
+            this.btnDigitalVisionMobilePhones.Enabled = value;
+            this.btnKupujemProdajemLogin.Enabled = value;
+            this.btnLoadArticles.Enabled = value;
+            this.btnNextArticl.Enabled = value;
+            this.cbMobilePhoneMasks.Enabled = value;
+            this.rbContact.Enabled = value;
+            this.rbAmount.Enabled = value;
+            this.btnRefresh.Enabled = value;
+
+            this.Cursor = value ? Cursors.Default : Cursors.WaitCursor;
         }
 
 
