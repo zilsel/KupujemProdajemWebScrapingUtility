@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlDocument = System.Windows.Forms.HtmlDocument;
+using WinFormsWebBrowser.Properties;
 
 namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 {
@@ -56,7 +57,16 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
         public static void DigitalVisionExtractMobilePhoneMasksDataFromPage(WebBrowser webBrowser, ProgressBar progressBar,
                                                                     TextBox tbSavePath, Uri baseUri)
         {
-            ExtractMobilePhoneMasksDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+            try
+            {
+                ExtractMobilePhoneMasksDataFromHtml(webBrowser, progressBar, tbSavePath, baseUri);
+            }
+            catch (Exception)
+            {
+                string wd = Directory.GetCurrentDirectory();
+                string defaultHtmlPagePath = "file://" + Path.Combine(wd, "HTMLPages", Resources.DefaultPageUrl);
+                webBrowser.Navigate(defaultHtmlPagePath);
+            }
         }
 
         public static void DigitalVisionExtractMobilePhoneMasksCategoryFromPage(WebBrowser webBrowser, ProgressBar progressBar,
