@@ -123,7 +123,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
             {
                 if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z')
                     || (c >= 'a' && c <= 'z')
-                    || (c == '.') || (c == '_') || (c == ' '))
+                    || (c == '_') || (c == ' '))
                 {
                     buffer[idx] = c;
                     idx++;
@@ -226,7 +226,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                         // Amount:
                         rg = new Regex(patternAmount, RegexOptions.IgnoreCase | RegexOptions.Compiled);
                         matched = rg.Matches(innerAHrefHtml);
-                        if (matched.Count > 0 && matched[1].Groups.Count > 0 && matched[1].Groups[1].Value != null && matched[1].Groups[1].Value.Contains("RSD"))
+                        if (matched.Count > 1 && matched[1].Groups.Count > 1 && matched[1].Groups[1].Value != null && matched[1].Groups[1].Value.Contains("RSD"))
                         {
                             amount = matched[1].Groups[1].Value.Replace("Sa PDV-om:", "").Replace("RSD", "").Trim();
                             amount = Math.Round(float.Parse(amount)).ToString();
