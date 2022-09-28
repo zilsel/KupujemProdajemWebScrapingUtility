@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KupujemProdajemMainForm));
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.tlpWebBrowser = new System.Windows.Forms.TableLayoutPanel();
+            this.tbAddressBar = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxKupujemProdajem = new System.Windows.Forms.GroupBox();
             this.rbContact = new System.Windows.Forms.RadioButton();
@@ -65,18 +67,16 @@
             this.about = new System.Windows.Forms.ToolStripMenuItem();
             this.oPROGRAMUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tlpWebBrowser = new System.Windows.Forms.TableLayoutPanel();
-            this.tbAddressBar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
+            this.tlpWebBrowser.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.groupBoxKupujemProdajem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticleImage)).BeginInit();
             this.groupBoxOglasi.SuspendLayout();
             this.mainMenu.SuspendLayout();
-            this.tlpWebBrowser.SuspendLayout();
             this.SuspendLayout();
             // 
             // webBrowser
@@ -109,6 +109,32 @@
             this.splitContainer.Size = new System.Drawing.Size(1199, 634);
             this.splitContainer.SplitterDistance = 406;
             this.splitContainer.TabIndex = 1;
+            // 
+            // tlpWebBrowser
+            // 
+            this.tlpWebBrowser.ColumnCount = 1;
+            this.tlpWebBrowser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpWebBrowser.Controls.Add(this.webBrowser, 0, 1);
+            this.tlpWebBrowser.Controls.Add(this.tbAddressBar, 0, 0);
+            this.tlpWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpWebBrowser.Location = new System.Drawing.Point(3, 3);
+            this.tlpWebBrowser.Name = "tlpWebBrowser";
+            this.tlpWebBrowser.RowCount = 2;
+            this.tlpWebBrowser.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpWebBrowser.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpWebBrowser.Size = new System.Drawing.Size(1193, 400);
+            this.tlpWebBrowser.TabIndex = 1;
+            // 
+            // tbAddressBar
+            // 
+            this.tbAddressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbAddressBar.Location = new System.Drawing.Point(3, 3);
+            this.tbAddressBar.Name = "tbAddressBar";
+            this.tbAddressBar.ReadOnly = true;
+            this.tbAddressBar.Size = new System.Drawing.Size(1187, 20);
+            this.tbAddressBar.TabIndex = 1;
+            this.tbAddressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tbAddressBar_MouseMove);
             // 
             // tableLayoutPanel
             // 
@@ -346,6 +372,7 @@
             this.btnRefresh.Size = new System.Drawing.Size(47, 38);
             this.btnRefresh.TabIndex = 8;
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.cbMobilePhoneMasks_SelectedIndexChanged);
             this.btnRefresh.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnRefresh_MouseMove);
             // 
             // label5
@@ -463,32 +490,6 @@
             this.oPROGRAMUToolStripMenuItem.Text = "O PROGRAMU";
             this.oPROGRAMUToolStripMenuItem.Click += new System.EventHandler(this.oPROGRAMUToolStripMenuItem_Click);
             // 
-            // tlpWebBrowser
-            // 
-            this.tlpWebBrowser.ColumnCount = 1;
-            this.tlpWebBrowser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpWebBrowser.Controls.Add(this.webBrowser, 0, 1);
-            this.tlpWebBrowser.Controls.Add(this.tbAddressBar, 0, 0);
-            this.tlpWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpWebBrowser.Location = new System.Drawing.Point(3, 3);
-            this.tlpWebBrowser.Name = "tlpWebBrowser";
-            this.tlpWebBrowser.RowCount = 2;
-            this.tlpWebBrowser.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpWebBrowser.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpWebBrowser.Size = new System.Drawing.Size(1193, 400);
-            this.tlpWebBrowser.TabIndex = 1;
-            // 
-            // tbAddressBar
-            // 
-            this.tbAddressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbAddressBar.Location = new System.Drawing.Point(3, 3);
-            this.tbAddressBar.Name = "tbAddressBar";
-            this.tbAddressBar.ReadOnly = true;
-            this.tbAddressBar.Size = new System.Drawing.Size(1187, 20);
-            this.tbAddressBar.TabIndex = 1;
-            this.tbAddressBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tbAddressBar_MouseMove);
-            // 
             // KupujemProdajemMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -506,6 +507,8 @@
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
+            this.tlpWebBrowser.ResumeLayout(false);
+            this.tlpWebBrowser.PerformLayout();
             this.tableLayoutPanel.ResumeLayout(false);
             this.groupBoxKupujemProdajem.ResumeLayout(false);
             this.groupBoxKupujemProdajem.PerformLayout();
@@ -514,8 +517,6 @@
             this.groupBoxOglasi.PerformLayout();
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
-            this.tlpWebBrowser.ResumeLayout(false);
-            this.tlpWebBrowser.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

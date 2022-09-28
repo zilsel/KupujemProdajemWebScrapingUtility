@@ -204,6 +204,7 @@ namespace WinFormsWebBrowser
             Uri address = new Uri(baseUri.OriginalString);
             this.tbAddressBar.Text = address.OriginalString;
             this.webBrowser.Navigate(address);
+            AccessUIControls(false);
         }
 
         private void btnKupujemProdajemLogin_Click(object sender, EventArgs e)
