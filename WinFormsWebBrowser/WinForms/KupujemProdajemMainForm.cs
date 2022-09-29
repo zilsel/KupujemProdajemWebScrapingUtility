@@ -339,8 +339,6 @@ namespace WinFormsWebBrowser
             this.btnLoadArticles.Enabled = value;
             this.btnNextArticl.Enabled = value;
             this.cbMobilePhoneMasks.Enabled = value;
-            this.rbContact.Enabled = value;
-            this.rbAmount.Enabled = value;
             this.btnRefresh.Enabled = value;
 
             this.Cursor = value ? Cursors.Default : Cursors.WaitCursor;
