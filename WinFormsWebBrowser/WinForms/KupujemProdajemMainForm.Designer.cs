@@ -36,8 +36,6 @@
             this.tbAddressBar = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxKupujemProdajem = new System.Windows.Forms.GroupBox();
-            this.rbContact = new System.Windows.Forms.RadioButton();
-            this.rbAmount = new System.Windows.Forms.RadioButton();
             this.articleWebLink = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -154,8 +152,6 @@
             // 
             // groupBoxKupujemProdajem
             // 
-            this.groupBoxKupujemProdajem.Controls.Add(this.rbContact);
-            this.groupBoxKupujemProdajem.Controls.Add(this.rbAmount);
             this.groupBoxKupujemProdajem.Controls.Add(this.articleWebLink);
             this.groupBoxKupujemProdajem.Controls.Add(this.label4);
             this.groupBoxKupujemProdajem.Controls.Add(this.label3);
@@ -179,28 +175,6 @@
             this.groupBoxKupujemProdajem.TabIndex = 0;
             this.groupBoxKupujemProdajem.TabStop = false;
             this.groupBoxKupujemProdajem.Text = "KUPUJEM PRODAJEM OGLAŠAVANJE";
-            // 
-            // rbContact
-            // 
-            this.rbContact.AutoSize = true;
-            this.rbContact.Location = new System.Drawing.Point(191, 66);
-            this.rbContact.Name = "rbContact";
-            this.rbContact.Size = new System.Drawing.Size(83, 17);
-            this.rbContact.TabIndex = 24;
-            this.rbContact.Text = "KONTAKT";
-            this.rbContact.UseVisualStyleBackColor = true;
-            // 
-            // rbAmount
-            // 
-            this.rbAmount.AutoSize = true;
-            this.rbAmount.Checked = true;
-            this.rbAmount.Location = new System.Drawing.Point(191, 43);
-            this.rbAmount.Name = "rbAmount";
-            this.rbAmount.Size = new System.Drawing.Size(58, 17);
-            this.rbAmount.TabIndex = 23;
-            this.rbAmount.TabStop = true;
-            this.rbAmount.Text = "CENA";
-            this.rbAmount.UseVisualStyleBackColor = true;
             // 
             // articleWebLink
             // 
@@ -274,7 +248,7 @@
             // lblArticleName
             // 
             this.lblArticleName.AutoSize = true;
-            this.lblArticleName.Location = new System.Drawing.Point(188, 16);
+            this.lblArticleName.Location = new System.Drawing.Point(188, 67);
             this.lblArticleName.Name = "lblArticleName";
             this.lblArticleName.Size = new System.Drawing.Size(156, 13);
             this.lblArticleName.TabIndex = 13;
@@ -551,8 +525,6 @@
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem about;
         private System.Windows.Forms.ToolStripMenuItem oPROGRAMUToolStripMenuItem;
-        private System.Windows.Forms.RadioButton rbContact;
-        private System.Windows.Forms.RadioButton rbAmount;
         private System.Windows.Forms.PictureBox pbArticleImage;
         private System.Windows.Forms.Button btnPhoneMask;
         private System.Windows.Forms.Label label5;
