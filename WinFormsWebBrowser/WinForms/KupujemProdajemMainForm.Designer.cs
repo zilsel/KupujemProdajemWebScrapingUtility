@@ -179,7 +179,7 @@
             // articleWebLink
             // 
             this.articleWebLink.AutoSize = true;
-            this.articleWebLink.Location = new System.Drawing.Point(188, 97);
+            this.articleWebLink.Location = new System.Drawing.Point(188, 68);
             this.articleWebLink.Name = "articleWebLink";
             this.articleWebLink.Size = new System.Drawing.Size(54, 13);
             this.articleWebLink.TabIndex = 22;
@@ -248,7 +248,7 @@
             // lblArticleName
             // 
             this.lblArticleName.AutoSize = true;
-            this.lblArticleName.Location = new System.Drawing.Point(188, 67);
+            this.lblArticleName.Location = new System.Drawing.Point(188, 55);
             this.lblArticleName.Name = "lblArticleName";
             this.lblArticleName.Size = new System.Drawing.Size(156, 13);
             this.lblArticleName.TabIndex = 13;

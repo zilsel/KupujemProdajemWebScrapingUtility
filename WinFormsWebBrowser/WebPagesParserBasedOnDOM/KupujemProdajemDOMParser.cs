@@ -39,8 +39,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                 currencyRsd.SetAttribute(Resources.checkAttributName, Resources.checkAttributName);
 
             HtmlElement articleDescription = webBrowser.Document.GetElementById(Resources.descriptionDomId);
-            if (articleDescription != null)
-                articleDescription.InnerText = webArticleDescription;
+            articleDescription.InnerText = webArticleDescription;
 
             HtmlElement promotionType = webBrowser.Document.GetElementById(Resources.promoTypeDomId);
             if (promotionType != null)
