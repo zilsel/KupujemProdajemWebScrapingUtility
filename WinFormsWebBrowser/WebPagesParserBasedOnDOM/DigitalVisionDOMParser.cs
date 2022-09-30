@@ -149,6 +149,11 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                     HtmlElementCollection htmlElementCollection = htmlDocument.GetElementsByTagName("ul");
                     HtmlElementCollection childrenHtmlDocument = htmlElementCollection[4].Children;
 
+                    if (childrenHtmlDocument[0].InnerText.Contains("Stranica:"))
+                    {
+                        childrenHtmlDocument = htmlElementCollection[5].Children;
+                    }
+
                     progressBar.Minimum = 1;
                     progressBar.Maximum = childrenHtmlDocument.Count * 2;
                     progressBar.Value = 1;
@@ -279,6 +284,8 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 
                 string articleDescription = "Desc$";
                 string oneLineDescription = description.Replace('\r', ' ').Replace('\n', ' ').Trim();
+                oneLineDescription = StripHTML(oneLineDescription);
+
                 if (string.IsNullOrEmpty(oneLineDescription))
                 {
                     oneLineDescription = title[1];
@@ -292,6 +299,16 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 
                 progressBar.PerformStep();
             }
+        }
+
+        private static string StripHTML(string input)
+        {
+            if (String.IsNullOrEmpty(input))
+            {
+                return string.Empty;
+            }
+            return Regex.Replace(input, "<.*?>", String.Empty);
+
         }
     }
 }

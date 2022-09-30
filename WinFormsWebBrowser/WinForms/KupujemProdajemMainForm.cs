@@ -176,7 +176,14 @@ namespace WinFormsWebBrowser
             {
                 Uri address = new Uri(selectedItem.Link);
                 this.tbAddressBar.Text = address.OriginalString;
-                this.webBrowser.Navigate(address);
+                if(address.OriginalString != this.webBrowser.Url.OriginalString)
+                {
+                    this.webBrowser.Navigate(this.webBrowser.Url);
+                }
+                else
+                {
+                    this.webBrowser.Navigate(address);
+                }
                 AccessUIControls(false);
             }
             else

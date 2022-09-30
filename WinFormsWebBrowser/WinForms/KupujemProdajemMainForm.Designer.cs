@@ -138,8 +138,8 @@
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.02585F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.97414F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.61385F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.38615F));
             this.tableLayoutPanel.Controls.Add(this.groupBoxKupujemProdajem, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.groupBoxOglasi, 0, 0);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -169,12 +169,13 @@
             this.groupBoxKupujemProdajem.Controls.Add(this.btnKupujemProdajemLogin);
             this.groupBoxKupujemProdajem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxKupujemProdajem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxKupujemProdajem.Location = new System.Drawing.Point(375, 3);
+            this.groupBoxKupujemProdajem.Location = new System.Drawing.Point(442, 3);
             this.groupBoxKupujemProdajem.Name = "groupBoxKupujemProdajem";
-            this.groupBoxKupujemProdajem.Size = new System.Drawing.Size(821, 218);
+            this.groupBoxKupujemProdajem.Size = new System.Drawing.Size(754, 218);
             this.groupBoxKupujemProdajem.TabIndex = 0;
             this.groupBoxKupujemProdajem.TabStop = false;
             this.groupBoxKupujemProdajem.Text = "KUPUJEM PRODAJEM OGLAŠAVANJE";
+            this.groupBoxKupujemProdajem.Visible = false;
             // 
             // articleWebLink
             // 
@@ -333,7 +334,7 @@
             this.groupBoxOglasi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxOglasi.Location = new System.Drawing.Point(3, 3);
             this.groupBoxOglasi.Name = "groupBoxOglasi";
-            this.groupBoxOglasi.Size = new System.Drawing.Size(366, 218);
+            this.groupBoxOglasi.Size = new System.Drawing.Size(433, 218);
             this.groupBoxOglasi.TabIndex = 1;
             this.groupBoxOglasi.TabStop = false;
             this.groupBoxOglasi.Text = "PREUZIMANJE OGLASA";
@@ -377,7 +378,7 @@
             this.btnMobileMaskCategory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMobileMaskCategory.Location = new System.Drawing.Point(6, 16);
             this.btnMobileMaskCategory.Name = "btnMobileMaskCategory";
-            this.btnMobileMaskCategory.Size = new System.Drawing.Size(92, 64);
+            this.btnMobileMaskCategory.Size = new System.Drawing.Size(166, 64);
             this.btnMobileMaskCategory.TabIndex = 5;
             this.btnMobileMaskCategory.Text = "PREUZMI KATEGORIJE MOBILNIH MASKI";
             this.btnMobileMaskCategory.UseVisualStyleBackColor = false;
@@ -388,9 +389,9 @@
             this.btnPhoneMask.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPhoneMask.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnPhoneMask.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPhoneMask.Location = new System.Drawing.Point(104, 16);
+            this.btnPhoneMask.Location = new System.Drawing.Point(178, 17);
             this.btnPhoneMask.Name = "btnPhoneMask";
-            this.btnPhoneMask.Size = new System.Drawing.Size(92, 64);
+            this.btnPhoneMask.Size = new System.Drawing.Size(151, 64);
             this.btnPhoneMask.TabIndex = 4;
             this.btnPhoneMask.Text = "PREUZMI MOBILNE MASKE";
             this.btnPhoneMask.UseVisualStyleBackColor = false;
@@ -401,7 +402,7 @@
             this.btnDigitalVisionMobilePhones.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnDigitalVisionMobilePhones.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnDigitalVisionMobilePhones.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(202, 16);
+            this.btnDigitalVisionMobilePhones.Location = new System.Drawing.Point(335, 16);
             this.btnDigitalVisionMobilePhones.Name = "btnDigitalVisionMobilePhones";
             this.btnDigitalVisionMobilePhones.Size = new System.Drawing.Size(92, 64);
             this.btnDigitalVisionMobilePhones.TabIndex = 0;
@@ -416,7 +417,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar.Location = new System.Drawing.Point(9, 189);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(351, 23);
+            this.progressBar.Size = new System.Drawing.Size(418, 23);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 3;
             // 
@@ -427,7 +428,7 @@
             this.tbSavePath.Location = new System.Drawing.Point(9, 163);
             this.tbSavePath.Name = "tbSavePath";
             this.tbSavePath.ReadOnly = true;
-            this.tbSavePath.Size = new System.Drawing.Size(351, 20);
+            this.tbSavePath.Size = new System.Drawing.Size(418, 20);
             this.tbSavePath.TabIndex = 1;
             // 
             // lblSavePath

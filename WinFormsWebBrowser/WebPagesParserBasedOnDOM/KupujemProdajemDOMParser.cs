@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsWebBrowser.Properties;
@@ -10,6 +11,16 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
 {
     internal static class KupujemProdajemDOMParser
     {
+
+        private static string StripHTML(string input)
+        {
+            if (String.IsNullOrEmpty(input))
+            {
+                return string.Empty;
+            }
+            return Regex.Replace(input, "<.*?>", String.Empty);
+
+        }
 
         public static void KupujemProdajemDOMParserInsertArticles(WebBrowser webBrowser, string webArticleTitle,
             string webArticleAmount, string webArticleDescription, string pib, string companyName, string companyAddress)
@@ -39,7 +50,7 @@ namespace WinFormsWebBrowser.WebPagesParserBasedOnDOM
                 currencyRsd.SetAttribute(Resources.checkAttributName, Resources.checkAttributName);
 
             HtmlElement articleDescription = webBrowser.Document.GetElementById(Resources.descriptionDomId);
-            articleDescription.InnerText = webArticleDescription;
+            articleDescription.InnerText = KupujemProdajemDOMParser.StripHTML(webArticleDescription);
 
             HtmlElement promotionType = webBrowser.Document.GetElementById(Resources.promoTypeDomId);
             if (promotionType != null)
